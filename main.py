@@ -5,6 +5,7 @@ import threading
 from zoneinfo import ZoneInfo
 
 import requests
+from contextlib import asynccontextmanager
 from datetime import datetime
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
@@ -22,7 +23,13 @@ TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
 TWILIO_FROM = os.getenv("TWILIO_FROM")
 TWILIO_TO = os.getenv("TWILIO_TO")
 
-app = FastAPI(title="Masters Leaderboard")
+@asynccontextmanager
+async def lifespan(application: FastAPI):
+    thread = threading.Thread(target=background_poller, daemon=True)
+    thread.start()
+    yield
+
+app = FastAPI(title="Masters Leaderboard", lifespan=lifespan)
 
 # --- Config ---
 TOURNAMENT_URL = "https://golf-leaderboard-data.p.rapidapi.com/leaderboard/834"
@@ -202,6 +209,7 @@ def fetch_and_update():
 
 def is_within_polling_window():
     """Only poll during Masters playing hours (ET)."""
+    # TODO: Verify the start times and likely finish times of each round
     et = ZoneInfo("America/New_York")
     now = datetime.now(et)
 
@@ -239,13 +247,6 @@ def background_poller():
         # Remove the line below (fetch_and_update()) when uncommenting the block above - keep the sleep interval:
         fetch_and_update()
         time.sleep(POLL_INTERVAL_SECONDS)
-
-
-# --- Start background thread on startup ---
-@app.on_event("startup")
-def startup_event():
-    thread = threading.Thread(target=background_poller, daemon=True)
-    thread.start()
 
 
 # --- API Routes ---
