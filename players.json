@@ -1,0 +1,158 @@
+{
+  "players": [
+    {
+      "name": "P. Greenwell",
+      "golfers": [
+        "Matt Fitzpatrick",
+        "Xander Schauffele",
+        "Jordan Spieth",
+        "Justin Thomas",
+        "Viktor Hovland",
+        "Max Homa"
+      ]
+    },
+    {
+      "name": "D. Gorley",
+      "golfers": [
+        "David Lipsky",
+        "Sungjae Im",
+        "Patrick Cantlay",
+        "Tony Finau",
+        "Brooks Koepka",
+        "Sahith Theegala"
+      ]
+    },
+    {
+      "name": "D. Elder",
+      "golfers": [
+        "Xander Schauffele",
+        "Marco Penge",
+        "Corey Conners",
+        "Brandt Snedeker",
+        "Wyndham Clark",
+        "Nick Dunlap"
+      ]
+    },
+    {
+      "name": "T. Moore",
+      "golfers": [
+        "Jordan Smith",
+        "Emiliano Grillo",
+        "Adrien Dumont de Chassart",
+        "Billy Horschel",
+        "Akshay Bhatia",
+        "Max Homa"
+      ]
+    },
+    {
+      "name": "S. Johnson",
+      "golfers": [
+        "Matt Fitzpatrick",
+        "Stephan Jaeger",
+        "Tom Kim",
+        "Denny McCarthy",
+        "Wyndham Clark",
+        "Charley Hoffman"
+      ]
+    },
+    {
+      "name": "R. Williams",
+      "golfers": [
+        "David Lipsky",
+        "S.H. Kim",
+        "Jacob Bridgeman",
+        "Webb Simpson",
+        "Beau Hossler",
+        "Adam Hadwin"
+      ]
+    },
+    {
+      "name": "C. Harris",
+      "golfers": [
+        "Jordan Smith",
+        "Matthieu Pavon",
+        "Hank Lebioda",
+        "Lee Hodges",
+        "Eric Cole",
+        "Gordon Sargent"
+      ]
+    },
+    {
+      "name": "J. Wilson",
+      "golfers": [
+        "Xander Schauffele",
+        "Patrick Cantlay",
+        "Christiaan Bezuidenhout",
+        "Doug Ghim",
+        "Akshay Bhatia",
+        "Taylor Pendrith"
+      ]
+    },
+    {
+      "name": "M. Taylor",
+      "golfers": [
+        "David Lipsky",
+        "Emiliano Grillo",
+        "Rico Hoey",
+        "Kevin Streelman",
+        "Ben Griffin",
+        "Luke Clanton"
+      ]
+    },
+    {
+      "name": "A. Brown",
+      "golfers": [
+        "Matt Fitzpatrick",
+        "Marco Penge",
+        "Justin Thomas",
+        "Karl Vilips",
+        "Sahith Theegala",
+        "Max McGreevy"
+      ]
+    },
+    {
+      "name": "K. Davies",
+      "golfers": [
+        "Sungjae Im",
+        "Jordan Spieth",
+        "Brandt Snedeker",
+        "Rasmus Højgaard",
+        "Kristoffer Reitan",
+        "Nick Taylor"
+      ]
+    },
+    {
+      "name": "O. Martin",
+      "golfers": [
+        "David Lipsky",
+        "Adrien Dumont de Chassart",
+        "Tony Finau",
+        "Joel Dahmen",
+        "Austin Eckroat",
+        "Davis Riley"
+      ]
+    },
+    {
+      "name": "L. Thompson",
+      "golfers": [
+        "Matt Fitzpatrick",
+        "Xander Schauffele",
+        "Brooks Koepka",
+        "Keegan Bradley",
+        "Thorbjørn Olesen",
+        "Mat Kuchar"
+      ]
+    },
+    {
+      "name": "N. Clarke",
+      "golfers": [
+        "Jordan Smith",
+        "S.H. Kim",
+        "Corey Conners",
+        "Mackenzie Hughes",
+        "Viktor Hovland",
+        "Cam Davis"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Masters — Fantasy Leaderboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-deep:   #1a3a2a;
+      --green-mid:    #2d5a3d;
+      --green-light:  #4a8c5c;
+      --gold:         #c9a84c;
+      --gold-light:   #e8c97a;
+      --cream:        #f5f0e8;
+      --cream-dark:   #e8e0d0;
+      --white:        #ffffff;
+      --text-dark:    #1a1a1a;
+      --text-mid:     #4a4a4a;
+      --text-light:   #8a8a8a;
+      --shadow:       rgba(0,0,0,0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--green-deep);
+      background-image:
+        radial-gradient(ellipse at 20% 0%, rgba(74,140,92,0.25) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 100%, rgba(45,90,61,0.3) 0%, transparent 60%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234a8c5c' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      font-family: 'Source Sans 3', sans-serif;
+      color: var(--cream);
+      min-height: 100vh;
+      padding: 0 0 60px;
+    }
+
+    /* ── Header ── */
+    header {
+      text-align: center;
+      padding: 52px 20px 36px;
+      position: relative;
+    }
+
+    .header-badge {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding: 5px 18px;
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .header-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 22px auto 0;
+      max-width: 300px;
+    }
+
+    .header-divider::before,
+    .header-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold));
+    }
+    .header-divider::after {
+      background: linear-gradient(to left, transparent, var(--gold));
+    }
+
+    .diamond {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* ── Status bar ── */
+    .status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 20px;
+      font-size: 12px;
+      color: var(--gold-light);
+      letter-spacing: 1px;
+      opacity: 0.8;
+      flex-wrap: wrap;
+    }
+
+    .status-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green-light);
+      display: inline-block;
+      margin-right: 6px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    /* ── Main container ── */
+    .container {
+      max-width: 860px;
+      margin: 20px auto 0;
+      padding: 0 16px;
+    }
+
+    /* ── Leaderboard card ── */
+    .leaderboard-card {
+      background: var(--cream);
+      color: var(--text-dark);
+      box-shadow: 0 20px 60px var(--shadow), 0 2px 8px rgba(0,0,0,0.12);
+      overflow: hidden;
+    }
+
+    /* ── Table header ── */
+    .table-header {
+      background: var(--green-deep);
+      display: grid;
+      grid-template-columns: 52px 1fr 90px;
+      padding: 12px 20px;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .table-header span {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .table-header .col-score { text-align: right; }
+
+    /* ── Player row ── */
+    .player-row {
+      display: grid;
+      grid-template-columns: 52px 1fr 90px;
+      padding: 0 20px;
+      border-bottom: 1px solid var(--cream-dark);
+      transition: background 0.15s;
+      animation: fadeIn 0.4s ease both;
+      position: relative;
+    }
+
+    .player-row:last-child { border-bottom: none; }
+    .player-row:hover { background: #f0ebe0; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Stagger animation */
+    .player-row:nth-child(1)  { animation-delay: 0.05s; }
+    .player-row:nth-child(2)  { animation-delay: 0.10s; }
+    .player-row:nth-child(3)  { animation-delay: 0.15s; }
+    .player-row:nth-child(4)  { animation-delay: 0.20s; }
+    .player-row:nth-child(5)  { animation-delay: 0.25s; }
+    .player-row:nth-child(6)  { animation-delay: 0.30s; }
+    .player-row:nth-child(7)  { animation-delay: 0.35s; }
+    .player-row:nth-child(8)  { animation-delay: 0.40s; }
+    .player-row:nth-child(9)  { animation-delay: 0.45s; }
+    .player-row:nth-child(10) { animation-delay: 0.50s; }
+
+    /* First place highlight */
+
+    .player-row.first-place:hover { background: #fdf5d8; }
+
+    .cell-pos {
+      display: flex;
+      align-items: center;
+      padding: 18px 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-light);
+    }
+
+    .first-place .cell-pos { color: var(--gold); }
+
+    .cell-name {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 14px 16px 14px 10px;
+    }
+
+    .player-name {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      letter-spacing: 0.2px;
+    }
+
+    .player-golfers {
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cell-score {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .score-under  { color: #c0392b; }
+    .score-even   { color: var(--text-mid); }
+    .score-over   { color: #2c7a2c; }
+    .score-missed { color: var(--text-light); font-size: 0.85rem; font-style: italic; font-family: 'Source Sans 3', sans-serif; }
+
+    /* ── Loading / error states ── */
+    .state-message {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-mid);
+    }
+
+    .state-message .icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+
+    .spinner {
+      width: 36px; height: 36px;
+      border: 3px solid var(--cream-dark);
+      border-top-color: var(--green-mid);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    .golfer-list {
+        font-size: 8px;
+        color: var(--text-light);
+        margin-top: 4px;
+        line-height: 1.7;
+        flex-wrap: wrap;
+    }
+
+    .golfer-score {
+        color: var(--gold);
+        margin-left: 6px;
+    }
+
+
+    .player-row {
+    position: relative;  /* already exists, just make sure this is there */
+    }
+
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 11px;
+      color: rgba(245,240,232,0.35);
+      letter-spacing: 1px;
+    }
+
+    /* ── Error banner ── */
+    .error-banner {
+      background: #5a1a1a;
+      color: #ffb3b3;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 13px;
+      display: none;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-badge">Augusta National · Fantasy Golf</div>
+    <h1>The <em>Masters</em><br>Leaderboard</h1>
+    <div class="header-divider"><div class="diamond"></div></div>
+  </header>
+
+  <div class="status-bar">
+    <span><span class="status-dot"></span>Live · updates every 2 min</span>
+    <span id="last-updated">—</span>
+  </div>
+
+  <div class="container">
+    <div class="error-banner" id="error-banner"></div>
+    <div class="leaderboard-card" id="leaderboard-card">
+      <div class="state-message">
+        <div class="spinner"></div>
+        <p>Loading leaderboard…</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>© The Masters Fantasy Pool · Auto-refreshes every 3 minutes</footer>
+
+  <script>
+    // Golfer list lookup — populated from API response
+    let playerGolfers = {};
+
+    function scoreClass(score) {
+      if (score === 'Missed Cut') return 'score-missed';
+      const num = parseFloat(score);
+      if (isNaN(num)) return 'score-even';
+      if (num < 0) return 'score-under';
+      if (num > 0) return 'score-over';
+      return 'score-even';
+    }
+
+    function renderLeaderboard(data) {
+      const card = document.getElementById('leaderboard-card');
+      const errorBanner = document.getElementById('error-banner');
+
+      if (data.error) {
+        errorBanner.style.display = 'block';
+        errorBanner.textContent = `⚠ API error: ${data.error}`;
+      } else {
+        errorBanner.style.display = 'none';
+      }
+
+      if (data.last_updated) {
+        document.getElementById('last-updated').textContent = `Last updated: ${data.last_updated}`;
+      }
+
+      const players = data.leaderboard;
+      if (!players || players.length === 0) {
+        card.innerHTML = `<div class="state-message"><div class="icon">⛳</div><p>No data yet — check back shortly.</p></div>`;
+        return;
+      }
+
+      let html = `
+        <div class="table-header">
+          <span>Pos</span>
+          <span>Player</span>
+          <span class="col-score">Score</span>
+        </div>
+      `;
+
+      players.forEach((player, i) => {
+        const isFirst = player.position === 1 && player.display_score !== 'Missed Cut';
+        const rowClass = isFirst ? 'player-row first-place' : 'player-row';
+        const sClass = scoreClass(player.display_score);
+
+        // Position display — show T for ties
+        const prevPos = i > 0 ? players[i - 1].position : null;
+        const nextPos = i < players.length - 1 ? players[i + 1].position : null;
+        let posDisplay = player.position;
+        if (prevPos === player.position || nextPos === player.position) {
+          posDisplay = `T${player.position}`;
+        }
+        if (player.display_score === 'Missed Cut') posDisplay = '—';
+
+        const top3 = player.top3_golfers && player.top3_golfers.length
+            ? player.top3_golfers.map(g => {
+                const score = g.score === 0 ? 'E' : (g.score > 0 ? `+${g.score}` : `${g.score}`);
+                return `<div>⛳ ${g.name}<span class="golfer-score">${score}</span></div>`;
+              }).join('')
+            : '<div>No active golfers</div>';
+
+        html += `
+          <div class="${rowClass}">
+            <div class="cell-pos">${posDisplay}</div>
+            <div class="cell-name">
+              <span class="player-name">${player.name}</span>
+              <div class="golfer-list">${top3}</div>
+            </div>
+            <div class="cell-score">
+              <span class="${sClass}">${player.display_score}</span>
+            </div>
+          </div>
+        `;
+        });
+
+      card.innerHTML = html;
+    }
+
+    async function loadLeaderboard(manual = false) {
+      if (manual) {
+        // Hit the manual refresh endpoint to force a new API call
+        await fetch('/api/refresh');
+      }
+      const res = await fetch('/api/leaderboard');
+      const data = await res.json();
+      renderLeaderboard(data);
+    }
+
+    // Initial load
+    loadLeaderboard();
+
+    // Auto-refresh every 3 minutes
+    setInterval(() => loadLeaderboard(), 180_000);
+  </script>
+</body>
+</html>
