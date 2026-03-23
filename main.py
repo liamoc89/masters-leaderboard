@@ -10,6 +10,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from dotenv import load_dotenv
+from twilio.rest import Client
 
 
 load_dotenv()
@@ -20,7 +21,6 @@ TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
 TWILIO_FROM = os.getenv("TWILIO_FROM")
 TWILIO_TO = os.getenv("TWILIO_TO")
-
 
 app = FastAPI(title="Masters Leaderboard")
 
@@ -152,6 +152,18 @@ def calculate_player_scores(players, golfer_scores):
             player["position"] = results[i - 1]["position"]
 
     return results
+
+def send_error_sms(error_message):
+    try:
+        client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+        client.messages.create(
+            body=f"Masters Leaderboard error: {error_message}",
+            from_=TWILIO_FROM,
+            to=TWILIO_TO
+        )
+        print("Error SMS sent.")
+    except Exception as e:
+        print(f"Failed to send SMS: {e}")
 
 
 # --- Fetch & Update ---
