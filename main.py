@@ -32,7 +32,7 @@ async def lifespan(application: FastAPI):
 app = FastAPI(title="Masters Leaderboard", lifespan=lifespan)
 
 # --- Config ---
-TOURNAMENT_URL = "https://golf-leaderboard-data.p.rapidapi.com/leaderboard/834"
+TOURNAMENT_URL = "https://golf-leaderboard-data.p.rapidapi.com/leaderboard/836"
 POLL_INTERVAL_SECONDS = 180
 PLAYERS_FILE = "players.json"
 
@@ -88,7 +88,7 @@ def calculate_player_scores(players, golfer_scores):
             key=lambda x: x["score"]
         )
         cut = sorted(
-            [g["score"] for g in scores if g["status"].lower() in ("cut", "withdrawn")]
+            [g["score"] for g in scores if g["status"].lower() in ("cut", "wd", "withdrawn", "dsq", "disqualified", "dq", "retired")]
         )
 
         active = [g["score"] for g in active_with_names]  # extract just scores from active_with_names

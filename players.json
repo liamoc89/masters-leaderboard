@@ -1,157 +1,223 @@
 {
   "players": [
     {
-      "name": "P. Greenwell",
+      "name": "Player1",
       "golfers": [
-        "Matt Fitzpatrick",
-        "Xander Schauffele",
-        "Jordan Spieth",
-        "Justin Thomas",
-        "Viktor Hovland",
-        "Max Homa"
-      ]
-    },
-    {
-      "name": "D. Gorley",
-      "golfers": [
-        "David Lipsky",
-        "Sungjae Im",
-        "Patrick Cantlay",
+        "Robert MacIntyre",
+        "Ludvig Åberg",
         "Tony Finau",
-        "Brooks Koepka",
-        "Sahith Theegala"
+        "Jordan Spieth",
+        "Patton Kizzire",
+        "K.H. Lee"
       ]
     },
     {
-      "name": "D. Elder",
+      "name": "Player2",
       "golfers": [
-        "Xander Schauffele",
-        "Marco Penge",
-        "Corey Conners",
-        "Brandt Snedeker",
-        "Wyndham Clark",
-        "Nick Dunlap"
-      ]
-    },
-    {
-      "name": "T. Moore",
-      "golfers": [
-        "Jordan Smith",
-        "Emiliano Grillo",
-        "Adrien Dumont de Chassart",
+        "Robert MacIntyre",
+        "Kevin Roy",
+        "Davis Thompson",
         "Billy Horschel",
-        "Akshay Bhatia",
-        "Max Homa"
+        "Johnny Keefer",
+        "Jesper Svensson"
       ]
     },
     {
-      "name": "S. Johnson",
+      "name": "Player3",
       "golfers": [
-        "Matt Fitzpatrick",
-        "Stephan Jaeger",
-        "Tom Kim",
-        "Denny McCarthy",
-        "Wyndham Clark",
-        "Charley Hoffman"
-      ]
-    },
-    {
-      "name": "R. Williams",
-      "golfers": [
-        "David Lipsky",
-        "S.H. Kim",
-        "Jacob Bridgeman",
-        "Webb Simpson",
-        "Beau Hossler",
-        "Adam Hadwin"
-      ]
-    },
-    {
-      "name": "C. Harris",
-      "golfers": [
-        "Jordan Smith",
-        "Matthieu Pavon",
-        "Hank Lebioda",
-        "Lee Hodges",
-        "Eric Cole",
-        "Gordon Sargent"
-      ]
-    },
-    {
-      "name": "J. Wilson",
-      "golfers": [
-        "Xander Schauffele",
-        "Patrick Cantlay",
-        "Christiaan Bezuidenhout",
-        "Doug Ghim",
-        "Akshay Bhatia",
-        "Taylor Pendrith"
-      ]
-    },
-    {
-      "name": "M. Taylor",
-      "golfers": [
-        "David Lipsky",
-        "Emiliano Grillo",
-        "Rico Hoey",
-        "Kevin Streelman",
-        "Ben Griffin",
-        "Luke Clanton"
-      ]
-    },
-    {
-      "name": "A. Brown",
-      "golfers": [
-        "Matt Fitzpatrick",
-        "Marco Penge",
-        "Justin Thomas",
-        "Karl Vilips",
-        "Sahith Theegala",
-        "Max McGreevy"
-      ]
-    },
-    {
-      "name": "K. Davies",
-      "golfers": [
-        "Sungjae Im",
-        "Jordan Spieth",
-        "Brandt Snedeker",
-        "Rasmus Højgaard",
+        "Ludvig Åberg",
+        "Andrew Putnam",
         "Kristoffer Reitan",
-        "Nick Taylor"
+        "Tommy Fleetwood",
+        "Adrien Saddier",
+        "Chan Kim"
       ]
     },
     {
-      "name": "O. Martin",
+      "name": "Player4",
       "golfers": [
-        "David Lipsky",
-        "Adrien Dumont de Chassart",
-        "Tony Finau",
-        "Joel Dahmen",
-        "Austin Eckroat",
-        "Davis Riley"
+        "Robert MacIntyre",
+        "Steven Fisk",
+        "Hideki Matsuyama",
+        "Kevin Streelman",
+        "Matthieu Pavon",
+        "Zecheng Dou"
       ]
     },
     {
-      "name": "L. Thompson",
+      "name": "Player5",
       "golfers": [
-        "Matt Fitzpatrick",
-        "Xander Schauffele",
-        "Brooks Koepka",
-        "Keegan Bradley",
-        "Thorbjørn Olesen",
-        "Mat Kuchar"
+        "Ludvig Åberg",
+        "John Parry",
+        "Will Zalatoris",
+        "Gordon Sargent",
+        "Jackson Suber",
+        "Patrick Fishburn"
       ]
     },
     {
-      "name": "N. Clarke",
+      "name": "Player6",
       "golfers": [
-        "Jordan Smith",
-        "S.H. Kim",
-        "Corey Conners",
+        "Kevin Roy",
+        "Andrew Putnam",
+        "Ryo Hisatsune",
+        "Marco Penge",
+        "Brice Garnett",
+        "Camilo Villegas"
+      ]
+    },
+    {
+      "name": "Player7",
+      "golfers": [
+        "Robert MacIntyre",
+        "Sam Ryder",
+        "Eric Cole",
+        "Brandt Snedeker",
         "Mackenzie Hughes",
-        "Viktor Hovland",
-        "Cam Davis"
+        "Jimmy Walker"
+      ]
+    },
+    {
+      "name": "Player8",
+      "golfers": [
+        "Ludvig Åberg",
+        "Steven Fisk",
+        "J.J. Spaun",
+        "Stephan Jaeger",
+        "Nick Dunlap",
+        "Jhonattan Vegas"
+      ]
+    },
+    {
+      "name": "Player9",
+      "golfers": [
+        "Kevin Roy",
+        "Tony Finau",
+        "Adrien Dumont de Chassart",
+        "Beau Hossler",
+        "Lucas Glover",
+        "Patton Kizzire"
+      ]
+    },
+    {
+      "name": "Player10",
+      "golfers": [
+        "Robert MacIntyre",
+        "Alex Smalley",
+        "Chris Kirk",
+        "Brian Harman",
+        "Matt Kuchar",
+        "Camilo Villegas"
+      ]
+    },
+    {
+      "name": "Player11",
+      "golfers": [
+        "Ludvig Åberg",
+        "Kevin Roy",
+        "Emiliano Grillo",
+        "Kevin Yu",
+        "Adrien Saddier",
+        "K.H. Lee"
+      ]
+    },
+    {
+      "name": "Player12",
+      "golfers": [
+        "Robert MacIntyre",
+        "John Parry",
+        "Hideki Matsuyama",
+        "Lee Hodges",
+        "Matthieu Pavon",
+        "Chan Kim"
+      ]
+    },
+    {
+      "name": "Player13",
+      "golfers": [
+        "Ludvig Åberg",
+        "Sam Ryder",
+        "Rico Hoey",
+        "Danny Walker",
+        "Nick Dunlap",
+        "Jesper Svensson"
+      ]
+    },
+    {
+      "name": "Player14",
+      "golfers": [
+        "Kevin Roy",
+        "Andrew Putnam",
+        "Tommy Fleetwood",
+        "Denny McCarthy",
+        "Jackson Suber",
+        "Johnny Keefer"
+      ]
+    },
+    {
+      "name": "Player15",
+      "golfers": [
+        "Robert MacIntyre",
+        "Steven Fisk",
+        "Will Zalatoris",
+        "Alejandro Tosti",
+        "Zecheng Dou",
+        "Patrick Fishburn"
+      ]
+    },
+    {
+      "name": "Player16",
+      "golfers": [
+        "Ludvig Åberg",
+        "Alex Smalley",
+        "J.J. Spaun",
+        "Gordon Sargent",
+        "Brice Garnett",
+        "Jhonattan Vegas"
+      ]
+    },
+    {
+      "name": "Player17",
+      "golfers": [
+        "Kevin Roy",
+        "John Parry",
+        "Davis Thompson",
+        "Jeffrey Kang",
+        "Patton Kizzire",
+        "Jimmy Walker"
+      ]
+    },
+    {
+      "name": "Player18",
+      "golfers": [
+        "Robert MacIntyre",
+        "Kristoffer Reitan",
+        "Adrien Dumont de Chassart",
+        "Tom Hoge",
+        "Matt Kuchar",
+        "K.H. Lee"
+      ]
+    },
+    {
+      "name": "Player19",
+      "golfers": [
+        "Ludvig Åberg",
+        "Andrew Putnam",
+        "Marco Penge",
+        "Russell Henley",
+        "Chan Kim",
+        "Jesper Svensson"
+      ]
+    },
+    {
+      "name": "Player20",
+      "golfers": [
+        "Kevin Roy",
+        "Sam Ryder",
+        "Eric Cole",
+        "Keith Mitchell",
+        "Zecheng Dou",
+        "Adrien Saddier"
       ]
     }
   ]
