@@ -64,31 +64,9 @@ Go to: http://localhost:8000
 
 ## Adding / Rotating API Keys
 
-Open `main.py` and update the `API_KEYS` list:
-
-```python
-API_KEYS = [
-    "your-key-1",
-    "your-key-2",
-    "your-key-3",
-    "your-key-4",
-]
-```
+Store multiple API_KEYS in a .env file.
 
 Keys are rotated automatically on each API call (round-robin).
-
----
-
-## Deploying to Railway (free, ~5 mins)
-
-1. Push this folder to a GitHub repository
-2. Go to https://railway.app and sign in with GitHub
-3. Click **New Project → Deploy from GitHub repo**
-4. Select your repository
-5. Railway will auto-detect the `Procfile` and deploy
-6. Your app will be live at a URL like `https://your-app.up.railway.app`
-
-> **Tip:** Railway's free tier gives you 500 hours/month — more than enough for 4 days.
 
 ---
 
