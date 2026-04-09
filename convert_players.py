@@ -18,14 +18,14 @@ import sys
 import os
 
 
-def convert(csv_path="players.csv", json_path="players.json"):
+def convert(csv_path="finalised_players.csv", json_path="players2.json"):
     if not os.path.exists(csv_path):
         print(f"Error: '{csv_path}' not found.")
         sys.exit(1)
 
     players = []
 
-    with open(csv_path, newline="", encoding="utf-8") as f:
+    with open(csv_path, newline="", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         for row in reader:
             name = row.get("name", "").strip()
@@ -57,5 +57,5 @@ def convert(csv_path="players.csv", json_path="players.json"):
 
 
 if __name__ == "__main__":
-    csv_file = sys.argv[1] if len(sys.argv) > 1 else "players.csv"
+    csv_file = sys.argv[1] if len(sys.argv) > 1 else "finalised_players.csv"
     convert(csv_path=csv_file)

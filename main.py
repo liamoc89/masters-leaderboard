@@ -40,7 +40,7 @@ async def lifespan(application: FastAPI):
 app = FastAPI(title="Masters Leaderboard", lifespan=lifespan)
 
 # --- Config ---
-TOURNAMENT_URL = "https://golf-leaderboard-data.p.rapidapi.com/leaderboard/836"
+TOURNAMENT_URL = "https://golf-leaderboard-data.p.rapidapi.com/leaderboard/837"
 POLL_INTERVAL_SECONDS = 180
 PLAYERS_FILE = "players.json"
 
