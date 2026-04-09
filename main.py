@@ -209,6 +209,7 @@ def fetch_and_update():
             response = requests.get(TOURNAMENT_URL, headers=get_headers(), timeout=10)
             response.raise_for_status()
             api_call_count += 1
+            logging.info(f"API call successful using: {API_KEYS[api_call_count % len(API_KEYS)][-3:]}")
             break  #successfull api call - stop trying
 
         except Exception as e:
