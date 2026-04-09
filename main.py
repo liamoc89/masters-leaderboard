@@ -271,8 +271,8 @@ def is_within_polling_window():
 
     # Masters dates 2026
     tournament_days = {
-        9:  {"start": 8,  "start_min": 5},   # Thursday  - first tee time ~8:00am, start polling 8:05am
-        10: {"start": 8,  "start_min": 5},   # Friday    - first tee time ~8:00am, start polling 8:05am
+        9:  {"start": 7,  "start_min": 55},   # Thursday  - first tee time ~8:00am, start polling 8:05am
+        10: {"start": 7,  "start_min": 55},   # Friday    - first tee time ~8:00am, start polling 8:05am
         11: {"start": 10, "start_min": 5},   # Saturday  - first tee time ~10:00am, start polling 10:05am
         12: {"start": 10, "start_min": 5},   # Sunday    - first tee time ~10:00am, start polling 10:05am
     }
@@ -295,14 +295,13 @@ def background_poller():
     """Runs in a background thread, polling every POLL_INTERVAL_SECONDS."""
     while True:
         # Uncomment the block below when ready for the actual tournament:
-        # if is_within_polling_window():
-        #     fetch_and_update()
-        # else:
-        #     logger.info("Outside polling window, skipping.")
-        #     print("Outside polling window, skipping.")
+        if is_within_polling_window():
+            logger.info("Within polling window, updating.")
+            fetch_and_update()
+        else:
+            logger.info("Outside polling window, skipping.")
+            print("Outside polling window, skipping.")
 
-        # Remove the line below (fetch_and_update()) when uncommenting the block above - keep the sleep interval:
-        fetch_and_update()
         time.sleep(POLL_INTERVAL_SECONDS)
 
 
