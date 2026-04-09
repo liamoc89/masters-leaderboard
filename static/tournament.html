@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Masters — Fantasy Leaderboard</title>
+  <title>The Masters — Tournament Leaderboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
@@ -96,6 +96,41 @@
       flex-shrink: 0;
     }
 
+    /* ── Nav ── */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 18px auto 0;
+    }
+
+    .nav a {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 6px 16px;
+      border: 1px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+      font-weight: 600;
+    }
+
+    .nav a:hover {
+      border-color: rgba(201,168,76,0.4);
+    }
+
+    .nav a.active {
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    .nav-sep {
+      color: rgba(201,168,76,0.3);
+      font-size: 11px;
+    }
+
     /* ── Status bar ── */
     .status-bar {
       display: flex;
@@ -143,7 +178,7 @@
     .table-header {
       background: var(--green-deep);
       display: grid;
-      grid-template-columns: 36px minmax(0, 1fr) minmax(0, 1fr) 60px;
+      grid-template-columns: 52px 1fr 80px 80px 70px;
       padding: 12px 20px;
       border-bottom: 2px solid var(--gold);
     }
@@ -156,40 +191,27 @@
       font-weight: 600;
     }
 
-    .table-header .col-score {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-left: 20px;
-  }
-
-    .table-header span:first-child {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-right: 20px;
-    }
+    .table-header .col-right { text-align: right; }
 
     /* ── Player row ── */
     .player-row {
       display: grid;
-      grid-template-columns: 36px minmax(0, 1fr) minmax(0, 1fr) 60px;
+      grid-template-columns: 52px 1fr 80px 80px 70px;
       padding: 0 20px;
       border-bottom: 1px solid var(--cream-dark);
       transition: background 0.15s;
       animation: fadeIn 0.4s ease both;
-      position: relative;
     }
 
     .player-row:last-child { border-bottom: none; }
     .player-row:hover { background: #f0ebe0; }
+    .player-row.first-place:hover { background: #fdf5d8; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(6px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Stagger animation */
     .player-row:nth-child(1)  { animation-delay: 0.05s; }
     .player-row:nth-child(2)  { animation-delay: 0.10s; }
     .player-row:nth-child(3)  { animation-delay: 0.15s; }
@@ -201,15 +223,10 @@
     .player-row:nth-child(9)  { animation-delay: 0.45s; }
     .player-row:nth-child(10) { animation-delay: 0.50s; }
 
-    /* First place highlight */
-
-    .player-row.first-place:hover { background: #fdf5d8; }
-
     .cell-pos {
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding-right: 20px;
+      padding: 18px 0;
       font-family: 'Playfair Display', serif;
       font-size: 1.15rem;
       font-weight: 700;
@@ -220,52 +237,56 @@
 
     .cell-name {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 14px 8px 14px 4px;
-    }
-
-    .player-name {
+      align-items: center;
+      padding: 14px 16px 14px 10px;
       font-size: 1.05rem;
       font-weight: 600;
       color: var(--text-dark);
       letter-spacing: 0.2px;
     }
 
-    .player-golfers {
-      font-size: 11px;
-      color: var(--text-light);
-      margin-top: 3px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
     .cell-score {
       display: flex;
       align-items: center;
-      padding-left: 20px;
-      justify-content: center;
+      justify-content: flex-end;
       font-family: 'Playfair Display', serif;
       font-size: 1.4rem;
       font-weight: 700;
     }
 
+    .cell-status {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    .status-active   { color: #2c7a2c; }
+    .status-complete { color: var(--text-mid); }
+    .status-cut      { color: #c0392b; }
+    .status-wd       { color: #c0392b; }
+
     .score-under  { color: #c0392b; }
     .score-even   { color: var(--text-mid); }
     .score-over   { color: #2c7a2c; }
-    .score-missed { color: var(--text-light); font-size: 0.85rem; font-style: italic; font-family: 'Source Sans 3', sans-serif; }
+    .score-cut    { color: var(--text-light); font-size: 0.85rem; font-style: italic; font-family: 'Source Sans 3', sans-serif; }
 
-    /* ── Loading / error states ── */
+    /* ── Loading / error ── */
     .state-message {
       text-align: center;
       padding: 60px 20px;
       color: var(--text-mid);
     }
 
-    .state-message .icon {
-      font-size: 2.5rem;
-      margin-bottom: 12px;
+    .cell-thru {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      font-size: 0.9rem;
+      color: var(--text-light);
     }
 
     .spinner {
@@ -277,40 +298,8 @@
       margin: 0 auto 16px;
     }
 
-    .golfer-list {
-        font-size: clamp(9px, 1.2vw, 11px);
-        color: var(--text-light);
-        margin-top: 4px;
-        line-height: 1.7;
-        flex-wrap: wrap;
-    }
-
-    .golfer-score {
-        color: var(--gold);
-        margin-left: 6px;
-    }
-
-    .golfer-list div {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 100%;
-      display: flex;
-      gap: 4px;
-    }
-
-
     @keyframes spin {
       to { transform: rotate(360deg); }
-    }
-
-    /* ── Footer ── */
-    footer {
-      text-align: center;
-      margin-top: 28px;
-      font-size: 11px;
-      color: rgba(245,240,232,0.35);
-      letter-spacing: 1px;
     }
 
     /* ── Error banner ── */
@@ -323,42 +312,14 @@
       display: none;
     }
 
-    /* ── Nav ── */
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin: 18px auto 0;
-    }
-
-    .nav a {
-      color: var(--gold);
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      margin-top: 28px;
       font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 6px 16px;
-      border: 1px solid transparent;
-      transition: border-color 0.2s, color 0.2s;
-      font-weight: 600;
+      color: rgba(245,240,232,0.35);
+      letter-spacing: 1px;
     }
-
-    .nav a:hover {
-      border-color: rgba(201,168,76,0.4);
-    }
-
-    .nav a.active {
-      border-color: var(--gold);
-      color: var(--gold-light);
-    }
-
-    .nav-sep {
-      color: rgba(201,168,76,0.3);
-      font-size: 11px;
-    }
-
-
   </style>
 </head>
 <body>
@@ -368,9 +329,9 @@
     <div class="header-divider"><div class="diamond"></div></div>
 
     <nav class="nav">
-      <a href="/" class="active">Sweep Leaderboard</a>
+      <a href="/">Sweep Leaderboard</a>
       <span class="nav-sep">·</span>
-      <a href="/tournament">Masters Leaderboard</a>
+      <a href="/tournament" class="active">Masters Leaderboard</a>
     </nav>
   </header>
 
@@ -392,118 +353,128 @@
   <footer>© The Masters Fantasy Pool · Auto-refreshes every 3 minutes</footer>
 
   <script>
-    // Golfer list lookup — populated from API response
-    let playerGolfers = {};
+    function scoreClass(displayScore) {
+  if (displayScore === 'E') return 'score-even';
+  if (displayScore === 'CUT') return 'score-cut';
+  const num = parseFloat(displayScore);
+  if (isNaN(num)) return 'score-even';
+  if (num < 0) return 'score-under';
+  if (num > 0) return 'score-over';
+  return 'score-even';
+}
 
-    function scoreClass(score) {
-      if (score === 'Missed Cut') return 'score-missed';
-      const num = parseFloat(score);
-      if (isNaN(num)) return 'score-even';
-      if (num < 0) return 'score-under';
-      if (num > 0) return 'score-over';
-      return 'score-even';
+function isCut(status) {
+  return ['cut', 'wd', 'withdrawn', 'dsq', 'dq', 'disqualified', 'retired'].includes((status || '').toLowerCase());
+}
+
+function formatThru(player) {
+  if (isCut(player.status)) return '—';
+
+
+  const s = (player.status || '').toLowerCase();
+  const holes = player.holes_played ?? 0;
+
+  // Treat "complete" as finished, regardless of holes_played
+  const finished = holes === 18 || s === 'complete';
+
+  if (finished) {
+    const roundIndex = (player.current_round || 1) - 1;
+    const roundData = (player.rounds || [])[roundIndex];
+    if (!roundData) return 'F';
+    return `F (${roundData.strokes})`;
+  }
+
+  if (holes === 0) return '—';
+
+  return `${holes}`;
+}
+
+function renderRows(players) {
+  const card = document.getElementById('leaderboard-card');
+
+  if (!players || players.length === 0) {
+    card.innerHTML = `<div class="state-message"><div style="font-size:2.5rem;margin-bottom:12px">⛳</div><p>No players found.</p></div>`;
+    return;
+  }
+
+  let html = `
+    <div class="table-header">
+      <span>Pos</span>
+      <span>Golfer</span>
+      <span class="col-right">Score</span>
+      <span class="col-right">Today</span>
+      <span class="col-right">Thru</span>
+    </div>
+  `;
+
+  players.forEach((player, i) => {
+    const cut = isCut(player.status);
+    const isFirst = i === 0 && !cut;
+    const rowClass = isFirst ? 'player-row first-place' : 'player-row';
+
+    const displayScore = cut ? 'CUT' : player.display_score;
+    const sClass = scoreClass(displayScore);
+
+    const prevPos = i > 0 ? players[i - 1].position : null;
+    const nextPos = i < players.length - 1 ? players[i + 1].position : null;
+    let posDisplay = player.position || '—';
+    if (!cut && (prevPos === player.position || nextPos === player.position)) {
+      posDisplay = `T${player.position}`;
+    }
+    if (cut) posDisplay = '—';
+
+    // Today — current round score
+    const roundIndex = (player.current_round || 1) - 1;
+    const roundData = (player.rounds || [])[roundIndex];
+    let today = '—';
+    if (!cut && roundData) {
+      const s = roundData.total_to_par;
+      today = s === 0 ? 'E' : `${s > 0 ? '+' : ''}${s}`;
     }
 
-    function golferDisplay(g) {
-      const isCut = ['cut', 'wd', 'withdrawn', 'dsq', 'dq', 'disqualified', 'retired'].includes((g.status || '').toLowerCase());
-      const emoji = isCut ? '❌' : '⛳';
+    const thru = formatThru(player);
 
-      let scoreDisplay, scoreStyle;
-      if (isCut) {
-        scoreDisplay = 'MC';
-        scoreStyle = 'color: #c0392b;';
-      } else {
-        scoreDisplay = g.score === 0 ? 'E' : (g.score > 0 ? `+${g.score}` : `${g.score}`);
-        scoreStyle = g.counts ? 'color: #2c7a2c;' : 'color: #c0392b;';
-      }
+    html += `
+      <div class="${rowClass}">
+        <div class="cell-pos">${posDisplay}</div>
+        <div class="cell-name">${player.name}</div>
+        <div class="cell-score"><span class="${sClass}">${displayScore}</span></div>
+        <div class="cell-status"><span>${today}</span></div>
+        <div class="cell-thru"><span>${thru}</span></div>
+      </div>
+    `;
+  });
 
-      return `<div>${emoji} ${g.name}<span class="golfer-score" style="${scoreStyle}">${scoreDisplay}</span></div>`;
-    }
+  card.innerHTML = html;
+}
 
-    function renderLeaderboard(data) {
-      const card = document.getElementById('leaderboard-card');
-      const errorBanner = document.getElementById('error-banner');
+async function loadLeaderboard() {
+  const res = await fetch('/api/tournament');
+  const data = await res.json();
 
-      if (data.error) {
-        errorBanner.style.display = 'block';
-        errorBanner.textContent = `⚠ API error: ${data.error}`;
-      } else {
-        errorBanner.style.display = 'none';
-      }
+  const errorBanner = document.getElementById('error-banner');
+  if (data.error) {
+    errorBanner.style.display = 'block';
+    errorBanner.textContent = `⚠ API error: ${data.error}`;
+  } else {
+    errorBanner.style.display = 'none';
+  }
 
-      if (data.last_updated) {
-        document.getElementById('last-updated').textContent = `Last updated: ${data.last_updated}`;
-      }
+  if (data.last_updated) {
+    document.getElementById('last-updated').textContent = `Last updated: ${data.last_updated}`;
+  }
 
-      const players = data.leaderboard;
-      if (!players || players.length === 0) {
-        card.innerHTML = `<div class="state-message"><div class="icon">⛳</div><p>No data yet — check back shortly.</p></div>`;
-        return;
-      }
+  if (!data.leaderboard || data.leaderboard.length === 0) {
+    document.getElementById('leaderboard-card').innerHTML =
+      `<div class="state-message"><div style="font-size:2.5rem;margin-bottom:12px">⛳</div><p>No data yet — check back shortly.</p></div>`;
+    return;
+  }
 
-      let html = `
-        <div class="table-header">
-          <span>Pos</span>
-          <span>Player</span>
-          <span></span>
-          <span class="col-score">Score</span>
-        </div>
-      `;
+  renderRows(data.leaderboard);
+}
 
-      players.forEach((player, i) => {
-        const isFirst = player.position === 1 && player.display_score !== 'Missed Cut';
-        const rowClass = isFirst ? 'player-row first-place' : 'player-row';
-        const sClass = scoreClass(player.display_score);
-
-        // Position display — show T for ties
-        const prevPos = i > 0 ? players[i - 1].position : null;
-        const nextPos = i < players.length - 1 ? players[i + 1].position : null;
-        let posDisplay = player.position;
-        if (prevPos === player.position || nextPos === player.position) {
-          posDisplay = `T${player.position}`;
-        }
-        if (player.display_score === 'Missed Cut') posDisplay = '—';
-
-        const allGolfers = player.golfers || [];
-        const top3 = allGolfers.slice(0, 3).map(g => golferDisplay(g)).join('') || '<div>No golfers</div>';
-        const bottom3 = allGolfers.slice(3).map(g => golferDisplay(g)).join('');
-
-        html += `
-          <div class="${rowClass}">
-            <div class="cell-pos">${posDisplay}</div>
-            <div class="cell-name">
-              <span class="player-name">${player.name}</span>
-              <div class="golfer-list">${top3}</div>
-            </div>
-            <div class="cell-name">
-              <span class="player-name">&nbsp;</span>
-              <div class="golfer-list">${bottom3}</div>
-            </div>
-            <div class="cell-score">
-              <span class="${sClass}">${player.display_score}</span>
-            </div>
-          </div>
-        `;
-        });
-
-      card.innerHTML = html;
-    }
-
-    async function loadLeaderboard(manual = false) {
-      if (manual) {
-        // Hit the manual refresh endpoint to force a new API call
-        await fetch('/api/refresh');
-      }
-      const res = await fetch('/api/leaderboard');
-      const data = await res.json();
-      renderLeaderboard(data);
-    }
-
-    // Initial load
-    loadLeaderboard();
-
-    // Auto-refresh every 3 minutes
-    setInterval(() => loadLeaderboard(), 180_000);
+loadLeaderboard();
+setInterval(loadLeaderboard, 180_000);
   </script>
 </body>
 </html>

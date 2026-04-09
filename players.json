@@ -219,6 +219,39 @@
         "Zecheng Dou",
         "Adrien Saddier"
       ]
+    },
+    {
+      "name": "Player21",
+      "golfers": [
+        "Brice Garnett",
+        "Jhonattan Vegas",
+        "Chan Kim",
+        "Keith Mitchell",
+        "Zecheng Dou",
+        "Adrien Saddier"
+      ]
+    },
+    {
+      "name": "Player22",
+      "golfers": [
+        "Steven Fisk",
+        "Will Zalatoris",
+        "Chan Kim",
+        "Keith Mitchell",
+        "Zecheng Dou",
+        "Adrien Saddier"
+      ]
+    },
+    {
+      "name": "Player23",
+      "golfers": [
+        "Steven Fisk",
+        "Will Zalatoris",
+        "Chan Kim",
+        "Jeffrey Kang",
+        "Zecheng Dou",
+        "Adrien Saddier"
+      ]
     }
   ]
 }
