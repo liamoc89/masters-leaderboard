@@ -178,7 +178,7 @@
     .table-header {
       background: var(--green-deep);
       display: grid;
-      grid-template-columns: 52px 1fr 80px 80px 70px;
+      grid-template-columns: 52px minmax(0, 1fr) 80px 80px 70px;
       padding: 12px 20px;
       border-bottom: 2px solid var(--gold);
     }
@@ -196,7 +196,7 @@
     /* ── Player row ── */
     .player-row {
       display: grid;
-      grid-template-columns: 52px 1fr 80px 80px 70px;
+      grid-template-columns: 52px minmax(0, 1fr) 80px 80px 70px;
       padding: 0 20px;
       border-bottom: 1px solid var(--cream-dark);
       transition: background 0.15s;
@@ -239,7 +239,7 @@
       display: flex;
       align-items: center;
       padding: 14px 16px 14px 10px;
-      font-size: 1.05rem;
+      font-size: 0.7rem;
       font-weight: 600;
       color: var(--text-dark);
       letter-spacing: 0.2px;
