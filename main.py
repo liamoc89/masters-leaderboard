@@ -288,7 +288,7 @@ def is_within_polling_window():
 
     window = tournament_days[day]
     start = now.replace(hour=window["start"], minute=window["start_min"], second=0)
-    end   = now.replace(hour=19, minute=0, second=0)  # 7:00pm ET
+    end   = now.replace(hour=20, minute=0, second=0)  # 7:00pm ET
 
     return start <= now <= end
 
