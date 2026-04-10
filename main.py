@@ -7,7 +7,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 from contextlib import asynccontextmanager
-from datetime import datetime
+from datetime import datetime, timedelta
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -241,7 +241,7 @@ def fetch_and_update():
         leaderboard = calculate_player_scores(players, golfer_scores)
 
         state["leaderboard"] = leaderboard
-        state["last_updated"] = datetime.now().strftime("%H:%M:%S")
+        state["last_updated"] = (datetime.now() + timedelta(hours=1)).strftime("%H:%M:%S")
         state["error"] = None
         state["tournament_leaderboard"] = [
             {
