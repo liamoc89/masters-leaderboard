@@ -302,7 +302,7 @@ def background_poller():
         else:
             logger.info("Outside polling window, skipping.")
             print("Outside polling window, skipping.")
-
+        fetch_and_update()
         time.sleep(POLL_INTERVAL_SECONDS)
 
 
